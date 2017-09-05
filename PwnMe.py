@@ -6,7 +6,7 @@ import time
 
 try:
     os.system('cls')
-    start = time.time()
+    t0 = time.time()
     parser = argparse.ArgumentParser(description='A script to perform bruteforce dictionary attacks on brainwallets.')
     parser.add_argument('-p', action='store', dest='password',
                         help='Password that the script is guessing', required=True)
@@ -36,9 +36,8 @@ try:
         if dictionary_word == args.password:
             passFound = True
             os.system("cls")
-            stop = time.time()
-            total = start - stop
-            print("FOUND! Is your password {}?\nIt took {} seconds to guess your password.".format(dictionary_word, total))
+            t1 = time.time()
+            print("FOUND! Is your password {}?\nIt took {} seconds to guess your password.".format(dictionary_word, round(t1-t0, 2)))
             break
     dict_file.close()
     if not passFound and args.info != None:
@@ -53,9 +52,8 @@ try:
         for x in range(len(userInfoList)):
             if ''.join(userInfoList[x]) == args.password:
                 os.system("cls")
-                stop = time.time()
-                total = start - stop
-                print("FOUND! Is your password {}?\n It took {} seconds to guess your password.".format(''.join(userInfoList[x]), total))
+                t1 = time.time()
+                print("FOUND! Is your password {}?\nIt took {} seconds to guess your password.".format(''.join(userInfoList[x]), round(t1-t0, 2)))
                 passFound = True
                 break
 
